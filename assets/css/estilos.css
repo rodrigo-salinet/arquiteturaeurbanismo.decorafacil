@@ -1,0 +1,83 @@
+.sombreado-pequeno, .carousel-item div {
+    text-shadow: 0px 0px 10px #000;
+}
+
+.sombreado-medio {
+    text-shadow: 0px 0px 30px #000;
+}
+
+.sombreado-grande {
+    text-shadow: 0px 0px 60px #000;
+}
+
+.carousel-control-prev-icon, .carousel-control-next-icon {
+    background-color: rgba(0,114,104,.5);
+}
+
+.btn-whatsapp {
+    position: fixed;
+    right: 2px;
+    bottom: 2px;
+}
+
+body {
+    background-image: url('/assets/img/fullsize/fundo.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+}
+
+.borda-branca {
+    text-shadow:
+        1px 0 #fff,
+        -1px 0 #fff,
+        0 1px #fff,
+        0 -1px #fff,
+        1px 1px #fff,
+        -1px -1px #fff,
+        1px -1px #fff,
+        -1px 1px #fff;
+}
+
+.borda-preta {
+    text-shadow:
+        1px 0 #000,
+        -1px 0 #000,
+        0 1px #000,
+        0 -1px #000,
+        1px 1px #000,
+        -1px -1px #000,
+        1px -1px #000,
+        -1px 1px #000;
+}
+
+@font-face {
+    font-family: 'Californian FB';
+    src: url('/assets/fonts/californian-fb-3.ttf?v=1.00') format('truetype'),
+    url('/assets/fonts/californian-fb-bold.ttf?v=1.00') format('truetype'),
+    url('/assets/fonts/californian-fb-italic.ttf?v=1.00') format('truetype');
+}
+
+.arquiteta {
+    font-family: 'Californian FB';
+}
+
+#info p {
+    color: #000;
+}
+
+.branco-transparente {
+    filter: opacity(60%);
+    border-radius: 5px;
+    background-color: #fff;
+    margin: 5px;
+}
+
+.has-error {
+    background-color: aquamarine;
+}
+
+.help-block {
+    color: red;
+}
