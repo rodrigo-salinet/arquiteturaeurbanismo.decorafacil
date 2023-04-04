@@ -1,78 +1,103 @@
 // Open the Modal
 const openModal = (modal_id) => {
-    document.getElementById(modal_id).style.display = "block";
+    try {
+        let modal_tmp = document.getElementById(modal_id);
+        modal_tmp.style.display = "block";
+        showSlide(modal_tmp.getElementsByClassName("demo")[0]);
+    } catch (e) {
+        console.error(e);
+        return false;
+    };
 }
 
 // Close the Modal
 const closeModal = (modal_obj) => {
-    modal_obj.style.display = "none";
+    try {
+        modal_obj.style.display = "none";
+    } catch (e) {
+        console.error(e);
+        return false;
+    };
 }
 
-// Thumbnail image controls
-const currentSlide = (n) => {
-    showSlide(slideIndex = n);
+// Close the Modal
+const nextSlide = (obj) => {
+    try {
+        let modal_temp = obj.parentElement;
+        let slide_ativo = modal_temp.getElementsByClassName("slide_ativo");
+        let imgs_tmp = modal_temp.getElementsByClassName("demo");
+
+        let n_slide_atual = slide_ativo[0].dataset.slide;
+
+        if (n_slide_atual == 4) {
+            n_slide_atual = 0;
+        }
+
+        showSlide(imgs_tmp[n_slide_atual]);
+
+        return true;
+    } catch (e) {
+        console.error(e);
+        return false;
+    };
+}
+
+// Close the Modal
+const prevSlide = (obj) => {
+    try {
+        let modal_temp = obj.parentElement;
+        let slide_ativo = modal_temp.getElementsByClassName("slide_ativo");
+        let imgs_tmp = modal_temp.getElementsByClassName("demo");
+
+        let n_slide_atual = slide_ativo[0].dataset.slide;
+
+        if (n_slide_atual == 1) {
+            n_slide_atual = 3;
+        } else {
+            n_slide_atual = n_slide_atual - 2;
+        }
+
+        showSlide(imgs_tmp[n_slide_atual]);
+
+        return true;
+    } catch (e) {
+        console.error(e);
+        return false;
+    };
 }
 
 // Show / Change slides
-const showSlide = (n) => {
-    let slide1 = document.getElementById("slide1");
-    let slide2 = document.getElementById("slide2");
-    let slide3 = document.getElementById("slide3");
-    let slide4 = document.getElementById("slide4");
-    slide1.style.display = "none";
-    slide2.style.display = "none";
-    slide3.style.display = "none";
-    slide4.style.display = "none";
+const showSlide = (obj) => {
+    try {
+        let n = parseInt(obj.dataset.slide);
+        let modal_tmp = obj.parentElement.parentElement;
+        let slides = modal_tmp.getElementsByClassName('mySlides');
+        let captionText = modal_tmp.getElementsByClassName("caption-container")[0];
+        let imgs_slides = modal_tmp.getElementsByClassName('demo');
 
-    let img_slide1 = document.getElementById("img_slide1");
-    let img_slide2 = document.getElementById("img_slide2");
-    let img_slide3 = document.getElementById("img_slide3");
-    let img_slide4 = document.getElementById("img_slide4");
-    img_slide1.classList.remove("ativo");
-    img_slide2.classList.remove("ativo");
-    img_slide3.classList.remove("ativo");
-    img_slide4.classList.remove("ativo");
+        if (slides.length === 0) {
+            console.error("slides não encontrado");
+        }
 
-    let img_slide_atual;
-    let slide_atual;
+        if (imgs_slides.length === 0) {
+            console.error("imgs_slides não encontrados");
+        }
 
-    let captionText = document.getElementById("caption");
+        for (let i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
 
-    if (n < 1) {
-        slideIndex = 4;
-    } else if (n > 4) {
-        slideIndex = 1;
-    } else {
-        slideIndex = n;
-    }
+        for (let i = 0; i < imgs_slides.length; i++) {
+            imgs_slides[i].classList.remove("slide_ativo");
+        }
 
-    switch (slideIndex) {
-        case 1:
-            img_slide_atual = img_slide1;
-            slide_atual = slide1;
-            break;
-        case 2:
-            img_slide_atual = img_slide2;
-            slide_atual = slide2;
-            break;
-        case 3:
-            img_slide_atual = img_slide3;
-            slide_atual = slide3;
-            break;
-        case 4:
-            img_slide_atual = img_slide4;
-            slide_atual = slide4;
-            break;
-        default:
-            img_slide_atual = img_slide1;
-            slide_atual = slide1;
+        imgs_slides[n-1].classList.add("slide_ativo");
+        slides[n-1].style.display = "block";
+        captionText.innerHTML = imgs_slides[n-1].alt;
+
+        return true;
+    } catch (e) {
+        console.error(e);
+        return false;
     };
-
-    img_slide_atual.classList.add("ativo");
-    slide_atual.style.display = "block";
-    captionText.innerHTML = img_slide_atual.alt;
 }
-
-// Start slideIndex
-var slideIndex = 1;
-showSlide(slideIndex);
